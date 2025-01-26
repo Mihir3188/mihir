@@ -1,0 +1,177 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachings of Shiva Gita</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="shiva.jpg" class="shivaImage">
+        <h1>Teachings of Shiva Gita</h1>
+        <div class="teaching-card">
+            <h2 id="teaching-title"></h2>
+            <p id="teaching-explanation"></p>
+        </div>
+        <button onclick="nextTeaching()" class="styled-button">Next Teaching</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.shivaImage {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.teaching-card {
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: #4CAF50;
+}
+
+p {
+    color: #555;
+    text-align: justify;
+}
+
+.styled-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.styled-button:hover {
+    background-color: #45a049;
+}</style><script>const teachings = [
+    { title: "Self-Realization", explanation: "Understand your true nature to attain eternal bliss." },
+    { title: "Mindfulness", explanation: "Control your thoughts to achieve inner peace." },
+    { title: "Devotion", explanation: "Dedicate yourself to the divine for spiritual fulfillment." },
+    { title: "Karma", explanation: "Perform righteous actions for spiritual progress." },
+    { title: "Non-Attachment", explanation: "Let go of material desires for inner peace." },
+    { title: "Compassion", explanation: "Show kindness to all beings for harmony." },
+    { title: "Meditation", explanation: "Meditate daily for mental clarity and spiritual growth." },
+    { title: "Discipline", explanation: "Cultivate self-discipline to stay on your spiritual path." },
+    { title: "Inner Wisdom", explanation: "Seek wisdom through reflection." },
+    { title: "Service", explanation: "Serve others selflessly for joy and fulfillment." },
+    { title: "Gratitude", explanation: "Practice gratitude to appreciate life's blessings." },
+    { title: "Forgiveness", explanation: "Forgive others to free yourself from anger." },
+    { title: "Humility", explanation: "Embrace humility to connect with the divine." },
+    { title: "Patience", explanation: "Develop patience to navigate life's challenges." },
+    { title: "Faith", explanation: "Have faith in the divine for guidance and protection." },
+    { title: "Courage", explanation: "Face your fears to overcome obstacles." },
+    { title: "Love", explanation: "Love unconditionally to foster positive relationships." },
+    { title: "Contentment", explanation: "Find contentment in what you have." },
+    { title: "Truth", explanation: "Speak and live truthfully for integrity." },
+    { title: "Detachment", explanation: "Detach from ego to find your true self." },
+    { title: "Simplicity", explanation: "Embrace simplicity for a peaceful life." },
+    { title: "Generosity", explanation: "Give freely without expecting anything in return." },
+    { title: "Wisdom", explanation: "Seek knowledge to understand the world." },
+    { title: "Balance", explanation: "Maintain balance in all aspects of life." },
+    { title: "Resilience", explanation: "Build resilience to face life's ups and downs." },
+    { title: "Peace", explanation: "Cultivate inner peace through meditation." },
+    { title: "Respect", explanation: "Respect all living beings and their paths." },
+    { title: "Joy", explanation: "Find joy in simple things." },
+    { title: "Acceptance", explanation: "Accept what you cannot change." },
+    { title: "Focus", explanation: "Stay focused on your spiritual goals." },
+    { title: "Surrender", explanation: "Surrender to the divine will." },
+    { title: "Purity", explanation: "Keep your thoughts and actions pure." },
+    { title: "Harmony", explanation: "Strive for harmony in relationships." },
+    { title: "Silence", explanation: "Embrace silence to hear your inner voice." },
+    { title: "Empathy", explanation: "Understand and share the feelings of others." },
+    { title: "Self-Control", explanation: "Control your senses for spiritual growth." },
+    { title: "Knowledge", explanation: "Pursue knowledge for enlightenment." },
+    { title: "Positivity", explanation: "Maintain a positive outlook on life." },
+    { title: "Adaptability", explanation: "Adapt to change with grace." },
+    { title: "Determination", explanation: "Stay determined on your spiritual journey." },
+    { title: "Awareness", explanation: "Be aware of your thoughts and actions." },
+    { title: "Compassion", explanation: "Show compassion to those in need." },
+    { title: "Gratitude", explanation: "Be grateful for life's blessings." },
+    { title: "Humility", explanation: "Practice humility in all interactions." },
+    { title: "Inner Peace", explanation: "Seek inner peace through meditation." },
+    { title: "Joy", explanation: "Find joy in the present moment." },
+    { title: "Kindness", explanation: "Be kind to yourself and others." },
+    { title: "Love", explanation: "Love without conditions." },
+    { title: "Mindfulness", explanation: "Be mindful of the present moment." },
+    { title: "Patience", explanation: "Cultivate patience in all situations." },
+    { title: "Respect", explanation: "Respect the paths of others." },
+    { title: "Selflessness", explanation: "Act selflessly for the greater good." },
+    { title: "Silence", explanation: "Embrace silence to connect with your inner self." },
+    { title: "Simplicity", explanation: "Live a simple life." },
+    { title: "Strength", explanation: "Find strength within." },
+    { title: "Unity", explanation: "Recognize the unity of all beings." },
+    { title: "Wisdom", explanation: "Seek wisdom through reflection." },
+    { title: "Balance", explanation: "Maintain a balanced life." },
+    { title: "Calmness", explanation: "Stay calm in the face of challenges." },
+    { title: "Dedication", explanation: "Dedicate yourself to your spiritual path." },
+    { title: "Forgiveness", explanation: "Forgive others to find peace." },
+    { title: "Generosity", explanation: "Be generous in giving." },
+    { title: "Harmony", explanation: "Strive for harmony in relationships." },
+    { title: "Humility", explanation: "Embrace humility in all aspects of life." },
+    { title: "Inner Strength", explanation: "Find strength within yourself." },
+    { title: "Joy", explanation: "Find joy in everyday moments." },
+    { title: "Knowledge", explanation: "Pursue knowledge for enlightenment." },
+    { title: "Love", explanation: "Spread love and kindness." },
+    { title: "Mindfulness", explanation: "Be present in every moment." },
+    { title: "Patience", explanation: "Practice patience in all endeavors." },
+    { title: "Respect", explanation: "Show respect to all beings." },
+    { title: "Self-Control", explanation: "Master self-control for spiritual growth." },
+    { title: "Simplicity", explanation: "Find contentment in simplicity." },
+    { title: "Silence", explanation: "Appreciate the power of silence." },
+    { title: "Strength", explanation: "Build strength of character." },
+    { title: "Unity", explanation: "Understand the unity of all existence." },
+    { title: "Wisdom", explanation: "Reflect to gain wisdom." },
+    { title: "Balance", explanation: "Achieve balance in your life." },
+    { title: "Calmness", explanation: "Cultivate a calm mind." },
+    { title: "Dedication", explanation: "Commit to your spiritual journey." },
+];
+
+let currentIndex = 0;
+
+function displayTeaching() {
+    const teaching = teachings[currentIndex];
+    document.getElementById('teaching-title').textContent = teaching.title;
+    document.getElementById('teaching-explanation').textContent = teaching.explanation;
+}
+
+function nextTeaching() {
+    currentIndex = (currentIndex + 1) % teachings.length;
+    displayTeaching();
+}
+
+window.onload = displayTeaching;</script>

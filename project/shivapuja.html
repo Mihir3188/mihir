@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivalinga Game</title>
+<style>
+/* Your existing CSS remains the same */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+
+.shivalinga {
+    width: 200px;
+    height: 300px;
+    background-color: black;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.base {
+    width: 250px;
+    height: 70px;
+    background-color: black;
+    border-radius: 30%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tripundra {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.line {
+    width: 120px;
+    height: 3px;
+    background-color: white;
+    margin-bottom: 5px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Keyframes for animation */
+@keyframes dropWater {
+    0% {
+        top: -50px;
+        opacity: 0;
+    }
+    100% {
+        top: 200px;
+        opacity: 1;
+    }
+}
+
+@keyframes dropFlower {
+    0% {
+        top: -50px;
+        opacity: 0;
+    }
+    100% {
+        top: 200px;
+        opacity: 1;
+    }
+}
+
+@keyframes moveLamp {
+    0% {
+        transform: rotate(0deg) translateX(100px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(100px) rotate(-360deg);
+    }
+}
+
+/* Animation properties */
+.water-drop,
+.flower,
+.lamp,
+.fruit {
+    position: absolute;
+    font-size: 30px;
+    display: none;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#lightLamp {
+    background-color: #FFA500;
+}
+
+#dropFruits {
+    background-color: #FF4500;
+}
+
+#ringBell {
+    background-color: #1E90FF;
+}
+</style>
+</head>
+<body>
+
+<div class="shivalinga">
+  <div class="base"></div>
+  <div class="tripundra">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="dot"></div>
+  </div>
+  <!-- Animation elements -->
+  <div class="water-drop" style="left: 100px;">💧</div>
+  <div class="water-drop" style="left: 150px;">💧</div>
+  <div class="flower" style="left: 50px;">🌺</div>
+  <div class="flower" style="left: 200px;">🌺</div>
+  <div class="lamp" style="left: 50%; top: 50%; transform: translate(-50%, -50%);">🪔</div>
+  <div class="fruit" style="left: 50px; bottom: 0;">🍎</div>
+  <div class="fruit" style="left: 100px; bottom: 0;">🍊</div>
+  <div class="fruit" style="left: 150px; bottom: 0;">🍌</div>
+  <div class="fruit" style="left: 200px; bottom: 0;">🍍</div>
+  <div class="fruit" style="left: 250px; bottom: 0;">🥭</div>
+</div>
+
+<button onclick="toggleWater()">Drop Water</button>
+<button onclick="toggleFlowers()">Drop Flowers</button>
+<button id="lightLamp" onclick="toggleLamp()">Light Lamp</button>
+<button id="dropFruits" onclick="toggleFruits()">Show Fruits</button>
+<button id="ringBell" onclick="ringBell()">Ring Bell</button>
+
+<script>
+let waterDropping = false;
+let flowersDropping = false;
+let lampMoving = false;
+let fruitsVisible = false;
+
+// Replace this URL with the URL of your uploaded MP3 file
+let bellSound = new Audio('bell.mp3');
+
+function toggleWater() {
+    waterDropping = !waterDropping;
+    document.querySelectorAll('.water-drop').forEach(element => {
+        element.style.display = waterDropping ? 'block' : 'none';
+        element.style.animation = waterDropping ? 'dropWater 3s linear infinite' : 'none';
+    });
+}
+
+function toggleFlowers() {
+    flowersDropping = !flowersDropping;
+    document.querySelectorAll('.flower').forEach(element => {
+        element.style.display = flowersDropping ? 'block' : 'none';
+        element.style.animation = flowersDropping ? 'dropFlower 4s linear infinite' : 'none';
+    });
+}
+
+function toggleLamp() {
+    lampMoving = !lampMoving;
+    document.querySelector('.lamp').style.display = lampMoving ? 'block' : 'none';
+    document.querySelector('.lamp').style.animation = lampMoving ? 'moveLamp 5s linear infinite' : 'none';
+}
+
+function toggleFruits() {
+    fruitsVisible = !fruitsVisible;
+    document.querySelectorAll('.fruit').forEach(element => {
+        element.style.display = fruitsVisible ? 'block' : 'none';
+    });
+}
+
+function ringBell() {
+    bellSound.currentTime = 0; // Reset to start if the bell is clicked multiple times
+    bellSound.play().then(() => {
+        console.log('Bell sound playing.');
+    }).catch(error => {
+        console.log('Error playing sound:', error);
+    });
+}
+</script>
+
+</body>
+</html>
+

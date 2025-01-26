@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Slicing Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="score" id="score">Score: 0</div>
+        <div class="timer" id="timer">Time: 60</div>
+        <button id="startButton">Start Game</button>
+        <button id="resetButton" style="display: none;">Reset Game</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+<style>body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0f7fa; /* Fallback for old browsers */
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    font-family: Arial, sans-serif;
+}
+
+.game-container {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    border: 2px solid #000;
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.5s ease;
+}
+
+.score, .timer {
+    position: absolute;
+    top: 10px;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.score {
+    left: 10px;
+}
+
+.timer {
+    right: 10px;
+}
+
+button {
+    margin-top: auto;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button#resetButton {
+    margin-top: 10px;
+    background-color: #ff4d4d;
+}
+
+button#resetButton:hover {
+    background-color: #cc0000;
+}
+
+.fruit {
+    position: absolute;
+    top: 0;
+    font-size: 30px;
+    cursor: pointer;
+}
+</style><script>$(document).ready(function() {
+    let scoreDisplay = $('#score');
+    let timerDisplay = $('#timer');
+    let startButton = $('#startButton');
+    let resetButton = $('#resetButton');
+    let score = 0;
+    let timer = 60;
+    let gameInterval;
+    let fruitInterval;
+    let fruits = ['🍎', '🍊', '🍌', '🍉', '🍇', '🍓', '🍒', '🍍'];
+
+    function startGame() {
+        score = 0;
+        timer = 60;
+        scoreDisplay.text('Score: ' + score);
+        timerDisplay.text('Time: ' + timer);
+        startButton.hide();
+        resetButton.show();
+        dropFruits();
+        fruitInterval = setInterval(dropFruits, 2000);
+        gameInterval = setInterval(updateTimer, 1000);
+    }
+
+    function resetGame() {
+        clearInterval(gameInterval);
+        clearInterval(fruitInterval);
+        $('.fruit').remove();
+        startButton.show();
+        resetButton.hide();
+        scoreDisplay.text('Score: 0');
+        timerDisplay.text('Time: 60');
+    }
+
+    function dropFruits() {
+        for (let i = 0; i < 4; i++) {
+            dropFruit();
+        }
+    }
+
+    function dropFruit() {
+        let fruitStartPos = Math.random() * 370;
+        let randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
+        let fruitElement = $('<div class="fruit"></div>').text(randomFruit);
+
+        fruitElement.css({ top: '0px', left: fruitStartPos + 'px' });
+        $('.game-container').append(fruitElement);
+
+        fruitElement.animate({ top: '570px' }, {
+            duration: 3000,
+            easing: 'linear',
+            complete: function() {
+                if (fruitElement.is(':visible')) {
+                    gameOver();
+                }
+            }
+        });
+
+        fruitElement.on('mousedown touchstart', function() {
+            $(this).stop().fadeOut('fast', function() {
+                $(this).remove();
+            });
+            score += 10;
+            scoreDisplay.text('Score: ' + score);
+        });
+    }
+
+    function updateTimer() {
+        timer--;
+        timerDisplay.text('Time: ' + timer);
+        if (timer <= 0) {
+            gameOver();
+        }
+    }
+
+    function gameOver() {
+        clearInterval(gameInterval);
+        clearInterval(fruitInterval);
+        $('.fruit').remove();
+        alert('Game Over! Your score: ' + score);
+        resetGame();
+    }
+
+    startButton.on('click', startGame);
+    resetButton.on('click', resetGame);
+});
+</script>

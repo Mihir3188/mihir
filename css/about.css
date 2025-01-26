@@ -1,0 +1,99 @@
+/*Basic reset and font setup*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial,sans-serif;
+    background-color: #121212;
+    color: #E0E0E0;
+}
+/*Container*/
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/*Header*/
+.header {
+    background-color: #1F1F1F1F;
+    padding: 20px 0;
+    border-radius: 1px solid #333;
+
+}
+.im {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.im img {
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    animation: moveIcons 5s linear infinite;
+}
+@keyframes moveIcons {
+    0% {
+      transform: translateX(100%);  
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.menu li {
+    margin-left: 20px;
+
+}
+
+.menu a {
+    text-decoration: none;
+    color: #76FF03;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+menu a:hover {
+    color: #00E676;
+}
+
+/*About Section*/
+.about {
+    padding: 60px 20px;
+    text-align: left;
+}
+.about h2,.about h3 {
+    color: #76FF03;
+    margin-bottom: 20px;
+}
+.about p,.about ul{
+    margin-bottom: 20px;
+
+}
+.about ul {
+list-style: none;
+padding: 0;
+}
+.about ul li {
+    position: relative;
+    padding-left:20px;
+}
+.about ul li::before {
+    content:"✔";
+    position: absolute;
+    left: 0;
+    color: #00E676;
+}
+/* Footer*/
+.footer {
+background-color: #1F1F1F1F;
+color: #E0E0E0;
+padding: 20px 0;
+text-align: center;
+}
